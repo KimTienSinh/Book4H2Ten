@@ -1,0 +1,11 @@
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\bin\Debug\net8.0\Book4H2Ten.Services.deps.json
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\bin\Debug\net8.0\Book4H2Ten.Services.dll
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\bin\Debug\net8.0\Book4H2Ten.Services.pdb
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\Book4H2Ten.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\Book4H2Ten.Services.AssemblyInfoInputs.cache
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\Book4H2Ten.Services.AssemblyInfo.cs
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\Book4H2Ten.Services.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\Book4H2Ten.Services.dll
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\refint\Book4H2Ten.Services.dll
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\Book4H2Ten.Services.pdb
+C:\Users\ADMIN\source\repos\Book4H2Ten\src\Book4H2Ten.Services\obj\Debug\net8.0\ref\Book4H2Ten.Services.dll
