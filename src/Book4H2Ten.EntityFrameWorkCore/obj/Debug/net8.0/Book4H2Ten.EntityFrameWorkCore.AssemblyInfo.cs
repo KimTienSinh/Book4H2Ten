@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Book4H2Ten.EntityFrameWorkCore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6aad42db656ab04946465d27b4b07279aaba00dc")]
 [assembly: System.Reflection.AssemblyProductAttribute("Book4H2Ten.EntityFrameWorkCore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Book4H2Ten.EntityFrameWorkCore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

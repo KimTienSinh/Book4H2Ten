@@ -1,6 +1,8 @@
 ﻿using Book4H2Ten.EntityFrameWorkCore;
 using Book4H2Ten.EntityFrameWorkCore.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Book4H2Ten.Host.Extensions
 {
