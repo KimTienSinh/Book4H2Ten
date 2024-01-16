@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.15" />
+	<ProjectReference Include="..\Book4H2Ten.Core\Book4H2Ten.Core.csproj" />
   </ItemGroup>
 
 </Project>

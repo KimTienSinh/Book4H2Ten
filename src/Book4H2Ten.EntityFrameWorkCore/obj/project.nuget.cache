@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "/QhTweAnEhFI2MQFncg3JcLmd6FbpYWbqNGW6ijiT7MT4We/ebyTRyfCWXgPOOdKj2PH8S+xf9MvUooGdiegtw==",
+  "dgSpecHash": "i6mmUCXgkDCSwcsrNBAK+z9V+XmInKdl0P9vLt+6Rp8hI3G8dqksT8dDhR/nKpn3CuJ8yjU2y7/dTZWBMSx/CA==",
   "success": true,
   "projectFilePath": "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.EntityFrameWorkCore\\Book4H2Ten.EntityFrameWorkCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.15\\microsoft.entityframeworkcore.7.0.15.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.15\\microsoft.entityframeworkcore.abstractions.7.0.15.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.15\\microsoft.entityframeworkcore.analyzers.7.0.15.nupkg.sha512",

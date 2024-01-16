@@ -322,8 +322,8 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("RoleName")
-                        .HasColumnType("longtext");
+                    b.Property<int>("RoleName")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime(6)");
@@ -395,6 +395,9 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("GuidId")
                         .HasColumnType("char(36)");
@@ -476,6 +479,52 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Book4H2Ten.Entities.UserToken", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("AccessToken")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("AccessTokenExpiredTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("GuidId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("RefreshTokenExpiredTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GuidId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserToken");
                 });
 #pragma warning restore 612, 618
         }

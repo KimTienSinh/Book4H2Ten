@@ -40,6 +40,7 @@ namespace Book4H2Ten.EntityFrameWorkCore
             modelBuilder.ApplyConfiguration(new TypeBookConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new UserTokenConfiguration());
         }
     }
 

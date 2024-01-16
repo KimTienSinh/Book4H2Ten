@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using static Book4H2Ten.Core.Enums.EnumLibrary;
 
 namespace Book4H2Ten.Entities
 {
@@ -12,6 +13,8 @@ namespace Book4H2Ten.Entities
 
         public string FirstName {  get; set; }
         public string LastName { get; set; }
+
+        public UserGender Gender { get; set; }
 
         public DateTime BirtDate { get; set; }
 

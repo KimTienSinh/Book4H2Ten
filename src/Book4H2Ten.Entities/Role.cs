@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Book4H2Ten.Core.Enums.EnumLibrary;
 
 namespace Book4H2Ten.Entities
 {
     public class Role : BaseEntity
     {
-        public string RoleName { get; set; }
+        public RoleName RoleName { get; set; }
 
     }
     public class RoleConfiguration : BaseEntityTypeConfiguration<Role>

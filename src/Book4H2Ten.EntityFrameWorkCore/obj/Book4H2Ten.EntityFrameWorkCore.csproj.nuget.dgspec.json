@@ -82,7 +82,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.Core\\Book4H2Ten.Core.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.Core\\Book4H2Ten.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -144,9 +148,6 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.Core\\Book4H2Ten.Core.csproj": {
-                "projectPath": "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.Core\\Book4H2Ten.Core.csproj"
-              },
               "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.Entities\\Book4H2Ten.Entities.csproj": {
                 "projectPath": "C:\\Users\\ADMIN\\source\\repos\\Book4H2Ten\\src\\Book4H2Ten.Entities\\Book4H2Ten.Entities.csproj"
               }
@@ -163,6 +164,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.15, )"
