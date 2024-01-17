@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { PRODUCTS } from '../products';
 
-export const ShopContext = createContext(null);
+export const ShopContext = createContext();
 
 const getDefaultCart = () =>{
     let cart = {};

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Input from "../../components/input";
 import { loginFields } from "../../models/constant";
 
-import "./login.css";
+import {useNavigate} from 'react-router-dom';
 
 const fields = loginFields;
 let fieldsState = {};
@@ -23,9 +23,9 @@ export const Login = () => {
         authenticateUser();
     }
 
-    //Handle Login API Integration here
+    const navigate = useNavigate();
+    // Call đăng nhập api
     const authenticateUser = () => {
-
     }
     return (
         <>
@@ -77,14 +77,13 @@ export const Login = () => {
                 <button
                     type={"submit"}
                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
-                    onSubmit={handleSubmit}
+                    //onSubmit={handleSubmit}
+                    onClick={()=> navigate('/')}
                 >
 
                     {"Login"}
                 </button>
             </form>
-
-
         </>
     );
 };
