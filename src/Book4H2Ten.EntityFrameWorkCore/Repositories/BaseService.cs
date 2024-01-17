@@ -33,13 +33,13 @@ namespace Book4H2Ten.EntityFrameWorkCore.Repositories
         {
             _repository = repository;
             _httpContextAccessor = httpContextAccessor;
-            //Fullname = GetClaimValue("Book4H2Ten:Fullname");
-            /*PhoneNumber = GetClaimValue("Book4H2Ten:PhoneNumber");
+            Fullname = GetClaimValue("Book4H2Ten:Fullname");
+            PhoneNumber = GetClaimValue("Book4H2Ten:PhoneNumber");
             Email = GetClaimValue("Book4H2Ten:Email");
             Id = GetClaimValue("Book4H2Ten:Id") != null ? long.Parse(GetClaimValue("Book4H2Ten:Id")!) : null;
             UserId = GetClaimValue("Book4H2Ten:GuidId") != null ? Guid.Parse(GetClaimValue("Book4H2Ten:GuidId")!) : null;
             Gender = GetClaimValue("Book4H2Ten:Gender") != null ? Enum.Parse<UserGender>(GetClaimValue("Book4H2Ten:Gender")!) : null;
-            TimeZone = GetKeyValueFromHeader("Timezone") ?? "Asia/SaiGon";*/
+            TimeZone = GetKeyValueFromHeader("Timezone") ?? "Asia/SaiGon";
         }
 
         private string? GetClaimValue(string type)
