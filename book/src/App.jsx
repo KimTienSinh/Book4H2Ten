@@ -1,26 +1,28 @@
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import {Navbar} from "./components/navbar";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 import {Shop} from "./pages/shop/shop";
 import {Cart} from "./pages/cart/cart";
-import { ShopContextProvider } from './context/shop-context';
 import {Login} from "./pages/user/login";
 
 function App() {
   return (
-    <div className="App">
-      <ShopContextProvider>
-        <Router>
-        <Navbar />
-          <Routes>
+    <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="max-w-md w-full space-y-8">
+     <BrowserRouter>
+        <Routes>
             <Route path ="/" element={<Shop />}/>
             <Route path ="/cart" element={<Cart />}/>
             <Route path ="/login" element={<Login />}/>
-          </Routes>
-        </Router>
-      </ShopContextProvider>
+        </Routes>
+      </BrowserRouter>
     </div>
+  </div>
   );
+  
 }
 
 
