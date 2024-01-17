@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleLogo, FacebookLogo } from "phosphor-react";
+//import { GoogleLogo, FacebookLogo } from "phosphor-react";
 import Header from "../../components/header";
 import { useState } from 'react';
 import Input from "../../components/input";
@@ -28,62 +28,67 @@ export const Login = () => {
     const authenticateUser = () => {
     }
     return (
-        <>
-            <Header
-                heading="Login to your account"
-                paragraph="Don't have an account yet? "
-                linkName="Signup"
-                linkUrl="/signup"
-            />
-            <form className="mt-8 space-y-6">
-                <div className="-space-y-px">
-                    {
-                        fields.map(field =>
-                            <Input
-                                key={field.id}
-                                handleChange={handleChange}
-                                value={loginState[field.id]}
-                                labelText={field.labelText}
-                                labelFor={field.labelFor}
-                                id={field.id}
-                                name={field.name}
-                                type={field.type}
-                                isRequired={field.isRequired}
-                                placeholder={field.placeholder}
+        <> 
+        <div className='min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
+            <div className='max-w-md w-full space-y-8'>
+                <Header
+                    heading="Login to your account"
+                    paragraph="Don't have an account yet? "
+                    linkName="Signup"
+                    linkUrl="/signup"
+                />
+                <form className="mt-8 space-y-6">
+                    <div className="-space-y-px">
+                        {
+                            fields.map(field =>
+                                <Input
+                                    key={field.id}
+                                    handleChange={handleChange}
+                                    value={loginState[field.id]}
+                                    labelText={field.labelText}
+                                    labelFor={field.labelFor}
+                                    id={field.id}
+                                    name={field.name}
+                                    type={field.type}
+                                    isRequired={field.isRequired}
+                                    placeholder={field.placeholder}
+                                />
+
+                            )
+                        }
+                    </div>
+                    <div className="flex items-center justify-between ">
+                        <div className="flex items-center">
+                            <input
+                                id="remember-me"
+                                name="remember-me"
+                                type="checkbox"
+                                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
                             />
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                Remember me
+                            </label>
+                        </div>
 
-                        )
-                    }
-                </div>
-                <div className="flex items-center justify-between ">
-                    <div className="flex items-center">
-                        <input
-                            id="remember-me"
-                            name="remember-me"
-                            type="checkbox"
-                            className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                        />
-                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                            Remember me
-                        </label>
+                        <div className="text-sm">
+                            <a href="#" className="font-medium text-purple-600 hover:text-purple-500">
+                                Forgot your password?
+                            </a>
+                        </div>
                     </div>
+                    <button
+                        type={"submit"}
+                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
+                        //onSubmit={handleSubmit}
+                        onClick={()=> navigate('/')}
+                    >
 
-                    <div className="text-sm">
-                        <a href="#" className="font-medium text-purple-600 hover:text-purple-500">
-                            Forgot your password?
-                        </a>
-                    </div>
-                </div>
-                <button
-                    type={"submit"}
-                    className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
-                    //onSubmit={handleSubmit}
-                    onClick={()=> navigate('/')}
-                >
-
-                    {"Login"}
-                </button>
-            </form>
+                        {"Login"}
+                    </button>
+                </form>
+            </div>
+        </div>
+            
         </>
     );
 };
