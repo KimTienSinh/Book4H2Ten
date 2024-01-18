@@ -9,6 +9,7 @@ export default function Input({
     name,
     type,
     isRequired=false,
+    isReadOnly=false,
     placeholder,
     customClass
 }){
@@ -24,6 +25,7 @@ export default function Input({
               name={name}
               type={type}
               required={isRequired}
+              readOnly={isReadOnly}
               className={fixedInputClass+customClass}
               placeholder={placeholder}
             />

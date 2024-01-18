@@ -7,9 +7,11 @@ import {
 import { Shop } from "./pages/shop/shop";
 import { Cart } from "./pages/cart/cart";
 import { Login } from "./pages/user/login";
-import {Navbar} from "./components/navbar";
+import { Navbar } from "./components/navbar";
 import { Signup } from "./pages/user/signup";
+
 import { ShopContextProvider } from './context/shop-context';
+import { Setting } from './pages/user/profile/setting';
 
 
 function App() {
@@ -24,6 +26,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/setting" element={<Setting />} />
           </Routes>
         </BrowserRouter>
       </ShopContextProvider>
