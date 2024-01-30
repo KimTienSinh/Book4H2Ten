@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Book4H2Ten.Host.props" />
-</Project>
