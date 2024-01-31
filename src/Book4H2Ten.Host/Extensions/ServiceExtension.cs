@@ -1,5 +1,6 @@
 ﻿using Book4H2Ten.EntityFrameWorkCore;
 using Book4H2Ten.EntityFrameWorkCore.Repositories;
+using Book4H2Ten.Services.Books;
 using Book4H2Ten.Services.Tokens;
 using Book4H2Ten.Services.TypeBooks;
 using Book4H2Ten.Services.Users;
@@ -29,7 +30,7 @@ namespace Book4H2Ten.Host.Extensions
             //services.AddScoped<IUserNotificationSettingService, UserNotificationSettingService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITypeBookService, TypeBookService>();
-
+            services.AddScoped<IBookService, BookService>();
             //services.AddScoped<IFollowService, FollowService>();
 
             return services;
