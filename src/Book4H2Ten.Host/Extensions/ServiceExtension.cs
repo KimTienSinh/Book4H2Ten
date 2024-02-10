@@ -1,6 +1,7 @@
 ﻿using Book4H2Ten.EntityFrameWorkCore;
 using Book4H2Ten.EntityFrameWorkCore.Repositories;
 using Book4H2Ten.Services.Books;
+using Book4H2Ten.Services.Carts;
 using Book4H2Ten.Services.OrderDetails;
 using Book4H2Ten.Services.Orders;
 using Book4H2Ten.Services.Tokens;
@@ -35,6 +36,7 @@ namespace Book4H2Ten.Host.Extensions
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderDetailService, OrderDetailService>();
+            services.AddScoped<ICartService, CartService>();
             //services.AddScoped<IFollowService, FollowService>();
 
             return services;
