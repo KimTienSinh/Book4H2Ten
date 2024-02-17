@@ -16,6 +16,8 @@ namespace Book4H2Ten.Entities
 
         public UserGender Gender { get; set; }
 
+        public RoleName RoleName { get; set; }
+
         public DateTime BirtDate { get; set; }
 
         public string Address { get; set; }

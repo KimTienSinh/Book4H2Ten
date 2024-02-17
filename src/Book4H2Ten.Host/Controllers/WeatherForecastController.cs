@@ -1,11 +1,15 @@
+using Book4H2Ten.Host.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static Book4H2Ten.Core.Enums.EnumLibrary;
+
 
 namespace Book4H2Ten.Host.Controllers
 {
+    
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
@@ -22,14 +26,15 @@ namespace Book4H2Ten.Host.Controllers
             _logger = logger;
         }
 
+        [Authorize(roles: RoleName.USER)]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                TemperatureC = 17,
+                Summary = "muakho"
             })
             .ToArray();
         }

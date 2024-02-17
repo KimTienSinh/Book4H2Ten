@@ -3,6 +3,7 @@ using System;
 using Book4H2Ten.EntityFrameWorkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 {
     [DbContext(typeof(Book4H2TenDbContext))]
-    partial class Book4H2TenDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240217081025_addRoleName")]
+    partial class addRoleName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
