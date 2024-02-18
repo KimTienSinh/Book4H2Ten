@@ -174,9 +174,7 @@ namespace Book4H2Ten.Services.Tokens
                     new Claim("Book4H2Ten:GuidId", userEntity.GuidId.ToString()),
                     new Claim("Book4H2Ten:Gender",userEntity.Gender.ToString())
                 });
-                string tesst = "123";
             }
-            string tesst223 = "123";
             return claim;
         }
     }

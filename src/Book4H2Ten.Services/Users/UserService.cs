@@ -34,6 +34,12 @@ namespace Book4H2Ten.Services.Users
             _userRoleRepository = userRoleRepository;
         }
 
+        public User GetUserById(Guid id)
+        {
+            var user = _repository.GetByIdAsync(id).Result;
+            return user;
+        }
+
         public async Task<AuthResponseDto> Signup(SignUpRequestDto signupDto)
         {
             var isExistPhoneNumberOrEmail = await _repository.GetQuery().AnyAsync(x => x.Email == signupDto.Email || x.PhoneNumber == signupDto.PhoneNumber);

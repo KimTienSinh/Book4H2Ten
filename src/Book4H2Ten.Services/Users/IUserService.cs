@@ -11,7 +11,7 @@ namespace Book4H2Ten.Services.Users
 {
     public interface IUserService
     {
-        //User GetUserById(Guid id);
+        User GetUserById(Guid id);
         //Task<List<TagUserDto>> TagUserAsync(string? searchKey);
         Task Logout(RefreshTokenDto requestDto);
         //Task<MyProfileResponseDto> MyProfile();

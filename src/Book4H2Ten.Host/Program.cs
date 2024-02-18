@@ -1,5 +1,6 @@
 using AutoWrapper;
 using Book4H2Ten.Host.Extensions;
+using Book4H2Ten.Host.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -53,6 +54,11 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
+//// public & allowed from any source with Cors
+builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
+AuthConfigurer.Configure(builder.Services, builder.Configuration);
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddDIServices(builder.Configuration);
 
@@ -68,7 +74,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+// global error handler
+app.UseMiddleware<Book4H2Ten.Host.Middleware.ExceptionHandlerMiddleware>();
+
+// custom jwt auth middleware
+app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
