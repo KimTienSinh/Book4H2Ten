@@ -17,7 +17,9 @@ namespace Book4H2Ten.Services.Users
         //Task<MyProfileResponseDto> MyProfile();
         //Task<AuthResponseDto> RefreshToken(RefreshTokenDto requestDto);
         Task<AuthResponseDto> Signin(SigninRequestDto signupDto);
-        Task<AuthResponseDto> Signup(SignUpRequestDto signupDto);
+        Task<AuthResponseDto> Signup(SignUpRequestDto signupDto, string origin);
+
+        void VerifyEmail(string token);
 
     }
 }

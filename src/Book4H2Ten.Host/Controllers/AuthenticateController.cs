@@ -21,9 +21,9 @@ namespace Book4H2Ten.Host.Controllers
         [SwaggerOperation(Summary = "Signup")]
         [AllowAnonymous]
         [HttpPost("signup")]
-        public async Task<AuthResponseDto> Signup( SignUpRequestDto signupDto)
+        public async Task<AuthResponseDto> Signup(SignUpRequestDto signupDto)
         {
-            return await _userService.Signup(signupDto);
+            return await _userService.Signup(signupDto, Request.Headers["origin"]);
         }
 
         [SwaggerOperation(Summary = "Signin")]

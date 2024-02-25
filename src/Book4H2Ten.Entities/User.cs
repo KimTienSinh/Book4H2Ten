@@ -32,6 +32,9 @@ namespace Book4H2Ten.Entities
         public bool PhoneNumberConfirmed { get; set; }
 
         public bool TwoFactorEnabled { get; set; }
+
+        public string VerificationToken { get; set; }
+        public DateTime? Verified { get; set; }
     }
     public class UserConfiguration : BaseEntityTypeConfiguration<User>
     {

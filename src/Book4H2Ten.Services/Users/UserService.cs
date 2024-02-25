@@ -1,15 +1,19 @@
 ﻿using Book4H2Ten.Core.Enums;
 using Book4H2Ten.Core.Errors;
+using Book4H2Ten.Core.Helpers;
 using Book4H2Ten.Entities;
 using Book4H2Ten.EntityFrameWorkCore.Repositories;
+using Book4H2Ten.Services.Emails;
 using Book4H2Ten.Services.Tokens;
 using Book4H2Ten.Services.Users.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,17 +25,23 @@ namespace Book4H2Ten.Services.Users
         private readonly ITokenService _tokenService;
         private readonly IRepository<Role> _roleRepository;
         private readonly IRepository<UserRole> _userRoleRepository;
+        private readonly AppSettings _appSettings;
+        private readonly IEmailService _emailService;
         public UserService(IRepository<User> repository,
             IHttpContextAccessor httpContextAccessor,
             ITokenService tokenService,
             IRepository<UserToken> userTokenRepository,
             IRepository<Role> roleRepository,
-            IRepository<UserRole> userRoleRepository) : base(repository, httpContextAccessor)
+            IRepository<UserRole> userRoleRepository,
+            IOptions<AppSettings> appSettings,
+            IEmailService emailService) : base(repository, httpContextAccessor)
         {
             _tokenService = tokenService;
             _userTokenRepository = userTokenRepository;
             _roleRepository = roleRepository;
             _userRoleRepository = userRoleRepository;
+            _appSettings = appSettings.Value;
+            _emailService = emailService;
         }
 
         public User GetUserById(Guid id)
@@ -40,7 +50,7 @@ namespace Book4H2Ten.Services.Users
             return user;
         }
 
-        public async Task<AuthResponseDto> Signup(SignUpRequestDto signupDto)
+        public async Task<AuthResponseDto> Signup(SignUpRequestDto signupDto, string origin)
         {
             var isExistPhoneNumberOrEmail = await _repository.GetQuery().AnyAsync(x => x.Email == signupDto.Email || x.PhoneNumber == signupDto.PhoneNumber);
             if (isExistPhoneNumberOrEmail)
@@ -58,29 +68,36 @@ namespace Book4H2Ten.Services.Users
                 UserName = signupDto.UserName,
                 Email = signupDto.Email,
                 Password = BCrypt.Net.BCrypt.HashPassword(signupDto.Password),
+                PhoneNumber = signupDto.PhoneNumber,
+                RoleName = EnumLibrary.RoleName.USER,
                 /*FirstName = signupDto.FirstName,
                 LastName = signupDto.LastName,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
                 PhoneNumber = signupDto.PhoneNumber,
-                Gender = signupDto.Gender*/
+                */
             };
+            user.VerificationToken = _tokenService.GenerateRefreshToken();
+
+            // send email
+            sendVerificationEmail(user, origin);
+
             await _repository.AddAsync(user);
 
-            var role = new Role
+            /*var role = new Role
             {
                 RoleName = EnumLibrary.RoleName.USER,
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now
             };
-            await _roleRepository.AddAsync(role);
+            await _roleRepository.AddAsync(role);*/
 
-            var userRole = new UserRole
+           /* var userRole = new UserRole
             {
                 UserId = user.GuidId,
                 RoleId = role.GuidId
             };
-            await _userRoleRepository.AddAsync(userRole);
+            await _userRoleRepository.AddAsync(userRole);*/
 
             var accessToken = _tokenService.GenerateToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken();
@@ -144,6 +161,42 @@ namespace Book4H2Ten.Services.Users
             }
 
             await _userTokenRepository.DeleteAsync(validUserToken);
+        }
+
+        private void sendVerificationEmail(User account, string origin)
+        {
+            string message;
+            if (!string.IsNullOrEmpty(origin))
+            {
+                var verifyUrl = $"{origin}/account/verify-email?token={account.VerificationToken}";
+                message = $@"<p>Please click the below link to verify your email address:</p>
+                             <p><a href=""{verifyUrl}"">{verifyUrl}</a></p>";
+            }
+            else
+            {
+                message = $@"<p>Please use the below token to verify your email address with the <code>/accounts/verify-email</code> api route:</p>
+                             <p><code>{account.VerificationToken}</code></p>";
+            }
+
+            _emailService.Send(
+                to: account.Email,
+                subject: "Sign-up Verification API - Verify Email",
+                html: $@"<h4>Verify Email</h4>
+                         <p>Thanks for registering!</p>
+                         {message}"
+            );
+        }
+
+        public void VerifyEmail(string token)
+        {
+            var account = _repository.GetQuery(x => x.VerificationToken == token).FirstOrDefault();
+
+            if (account == null) throw new VerifyException("Verification failed");
+
+            account.Verified = DateTime.UtcNow;
+            account.VerificationToken = null;
+
+            _repository.UpdateAsync(account);
         }
     }
 }

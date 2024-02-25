@@ -3,6 +3,7 @@ using System;
 using Book4H2Ten.EntityFrameWorkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 {
     [DbContext(typeof(Book4H2TenDbContext))]
-    partial class Book4H2TenDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240225100544_addVerifyTokenUser")]
+    partial class addVerifyTokenUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
                     b.HasIndex("GuidId")
                         .IsUnique();
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.Book_TypeBook", b =>
@@ -108,7 +111,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("TypeBookId");
 
-                    b.ToTable("Book_TypeBooks", (string)null);
+                    b.ToTable("Book_TypeBooks");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.Cart", b =>
@@ -156,7 +159,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Carts", (string)null);
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.Order", b =>
@@ -208,7 +211,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.OrderDetail", b =>
@@ -259,7 +262,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.Payment", b =>
@@ -301,7 +304,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.Role", b =>
@@ -333,7 +336,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
                     b.HasIndex("GuidId")
                         .IsUnique();
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.TypeBook", b =>
@@ -365,7 +368,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
                     b.HasIndex("GuidId")
                         .IsUnique();
 
-                    b.ToTable("TypeBooks", (string)null);
+                    b.ToTable("TypeBooks");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.User", b =>
@@ -448,7 +451,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
                     b.HasIndex("GuidId")
                         .IsUnique();
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.UserRole", b =>
@@ -487,7 +490,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Book4H2Ten.Entities.UserToken", b =>
@@ -533,7 +536,7 @@ namespace Book4H2Ten.EntityFrameWorkCore.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserToken", (string)null);
+                    b.ToTable("UserToken");
                 });
 #pragma warning restore 612, 618
         }

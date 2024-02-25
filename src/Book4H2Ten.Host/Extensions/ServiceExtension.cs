@@ -1,7 +1,9 @@
-﻿using Book4H2Ten.EntityFrameWorkCore;
+﻿using Book4H2Ten.Core.Helpers;
+using Book4H2Ten.EntityFrameWorkCore;
 using Book4H2Ten.EntityFrameWorkCore.Repositories;
 using Book4H2Ten.Services.Books;
 using Book4H2Ten.Services.Carts;
+using Book4H2Ten.Services.Emails;
 using Book4H2Ten.Services.OrderDetails;
 using Book4H2Ten.Services.Orders;
 using Book4H2Ten.Services.Tokens;
@@ -24,7 +26,7 @@ namespace Book4H2Ten.Host.Extensions
 
             var connectionString = configuration.GetConnectionString("Book4H2TenDbContext");
             services.AddDbContext<Book4H2TenDbContext>(x => x.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-
+            services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
             services.AddScoped<IUnitOfWork<Book4H2TenDbContext>, UnitOfWork<Book4H2TenDbContext>>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -37,7 +39,7 @@ namespace Book4H2Ten.Host.Extensions
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderDetailService, OrderDetailService>();
             services.AddScoped<ICartService, CartService>();
-            //services.AddScoped<IFollowService, FollowService>();
+            services.AddScoped<IEmailService, EmailService>();
 
             return services;
         }
