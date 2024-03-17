@@ -128,6 +128,53 @@ namespace Book4H2Ten.Services.Users
             {
                 throw new BadRequestException("Wrong Password or Email or UserName! Please check again");
             }
+            if (user.IsVerified == false)
+            {
+                throw new BadRequestException("Account not verify. Please check verify");
+            }
+
+            var accessToken = _tokenService.GenerateToken(user);
+            var refreshToken = _tokenService.GenerateRefreshToken();
+            var accessTokenExpiryTime = _tokenService.AccessTokenExpiryTime();
+            var refreshTokenExpiryTime = _tokenService.RefreshTokenExpiryTime();
+
+            var userToken = new UserToken
+            {
+                UserId = user.GuidId,
+                AccessToken = accessToken,
+                AccessTokenExpiredTime = accessTokenExpiryTime,
+                RefreshToken = refreshToken,
+                RefreshTokenExpiredTime = refreshTokenExpiryTime,
+            };
+            await _userTokenRepository.AddAsync(userToken);
+
+            return new AuthResponseDto
+            {
+                UserId = user.GuidId,
+                AccessToken = accessToken,
+                RefreshToken = refreshToken,
+            };
+        }
+
+        public async Task<AuthResponseDto> RefreshToken(RefreshTokenDto requestDto)
+        {
+            var userIdInToken = _tokenService.UserIdFromExpiredToken(requestDto.AccessToken);
+            if (userIdInToken == null)
+            {
+                throw new BadRequestException("User Id not found");
+            }
+
+            var validUserToken = await _userTokenRepository.GetQuery(x => x.UserId == userIdInToken.Value &&
+            x.AccessToken == requestDto.AccessToken &&
+            x.RefreshToken == requestDto.RefreshToken &&
+            x.RefreshTokenExpiredTime > CurrentDate).FirstOrDefaultAsync();
+            if (validUserToken == null)
+            {
+                throw new BadRequestException("User Id not found or wrong token");
+            }
+            await _userTokenRepository.DeleteAsync(validUserToken);
+
+            var user = await _repository.GetByIdAsync(userIdInToken.Value);
 
             var accessToken = _tokenService.GenerateToken(user);
             var refreshToken = _tokenService.GenerateRefreshToken();
@@ -163,6 +210,24 @@ namespace Book4H2Ten.Services.Users
             await _userTokenRepository.DeleteAsync(validUserToken);
         }
 
+        /*public void ForgotPassword(ForgotPasswordRequestDtos model, string origin)
+        {
+            var account = _userTokenRepository.GetQuery(x => x.Email == model.Email);
+
+            // always return ok response to prevent email enumeration
+            if (account == null) return;
+
+            // create reset token that expires after 1 day
+            account.ResetToken = randomTokenString();
+            account.ResetTokenExpires = DateTime.UtcNow.AddDays(1);
+
+            _context.Accounts.Update(account);
+            _context.SaveChanges();
+
+            // send email
+            sendPasswordResetEmail(account, origin);
+        }*/
+
         private void sendVerificationEmail(User account, string origin)
         {
             string message;
@@ -195,7 +260,7 @@ namespace Book4H2Ten.Services.Users
 
             account.Verified = DateTime.UtcNow;
             account.VerificationToken = null;
-
+            account.IsVerified = true;
             _repository.UpdateAsync(account);
         }
     }

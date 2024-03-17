@@ -1,6 +1,7 @@
 ﻿using Book4H2Ten.Core.Errors;
 using Book4H2Ten.Entities;
 using Book4H2Ten.EntityFrameWorkCore.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -15,16 +16,17 @@ using System.Threading.Tasks;
 
 namespace Book4H2Ten.Services.Tokens
 {
-    public class TokenService : ITokenService
+    public class TokenService :  ITokenService
     {
         private readonly IConfiguration _configuration;
         private readonly IRepository<UserToken> _userTokenRepository;
-
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public TokenService(
-            IConfiguration configuration, IRepository<UserToken> userTokenRepository)
+            IConfiguration configuration, IRepository<UserToken> userTokenRepository, IHttpContextAccessor httpContextAccessor)
         {
             _configuration = configuration;
             _userTokenRepository = userTokenRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public string GenerateRefreshToken()
@@ -52,7 +54,19 @@ namespace Book4H2Ten.Services.Tokens
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             );
 
-            return tokenHandler.WriteToken(jwtSecurityToken);
+            var encryptToken = tokenHandler.WriteToken(jwtSecurityToken);
+
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("token", encryptToken,
+                new CookieOptions
+                {
+                    Expires = DateTime.Now.AddDays(1),
+                    Secure = true,
+                    HttpOnly = true,
+                    IsEssential = true,
+                    SameSite = SameSiteMode.Strict,
+                });
+
+            return encryptToken;
         }
 
         public DateTime AccessTokenExpiryTime()

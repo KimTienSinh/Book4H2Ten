@@ -26,7 +26,7 @@ namespace Book4H2Ten.Host.Controllers
             _logger = logger;
         }
 
-        //[Authorize(roles: RoleName.USER)]
+        //[Authorize(roles: RoleName.ADMIN)]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

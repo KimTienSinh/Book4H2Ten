@@ -55,7 +55,17 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 //// public & allowed from any source with Cors
-builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp", builder =>
+    {
+        builder//AllowAnyOrigin()
+               .WithOrigins("http://localhost:3000")
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials();
+    });
+});
 
 AuthConfigurer.Configure(builder.Services, builder.Configuration);
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
@@ -71,7 +81,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowReactApp");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

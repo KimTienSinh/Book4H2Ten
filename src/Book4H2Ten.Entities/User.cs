@@ -35,6 +35,7 @@ namespace Book4H2Ten.Entities
 
         public string VerificationToken { get; set; }
         public DateTime? Verified { get; set; }
+        public bool IsVerified { get; set; }
     }
     public class UserConfiguration : BaseEntityTypeConfiguration<User>
     {
